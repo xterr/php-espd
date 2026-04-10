@@ -1,0 +1,36 @@
+{
+    "name": "xterr/php-espd",
+    "description": "Typed PHP classes for ESPD (European Single Procurement Document) based on ESPD-EDM v4.1.0 / UBL 2.3",
+    "license": "MIT",
+    "type": "library",
+    "version": "1.0.0",
+    "keywords": [
+        "ubl",
+        "xml",
+        "xsd",
+        "espd",
+        "procurement",
+        "e-procurement",
+        "qualification"
+    ],
+    "authors": [
+        {
+            "name": "Razvan Ceana",
+            "email": "razvan@ceana.ro"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ext-dom": "*",
+        "ext-libxml": "*",
+        "xterr/php-ubl": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xterr\\Espd\\": "src/"
+        }
+    },
+    "require-dev": {
+        "xterr/php-ubl-generator": "^1.0"
+    }
+}

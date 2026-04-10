@@ -1,0 +1,9 @@
+/vendor/
+.idea
+.opencode
+.sisyphus
+.phpunit.cache
+.phpunit.result.cache
+openspec
+composer.lock
+resources

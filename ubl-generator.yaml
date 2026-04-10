@@ -1,0 +1,50 @@
+# Source: OP-TED/ESPD-EDM v4.1.0 (UBL 2.3 OS)
+
+schema_version: '2.3'
+schema_dir: 'resources/schemas/v4.1.0'
+output_dir: 'src'
+namespace: 'Xterr\Espd'
+
+namespaces:
+  cbc: 'Cbc'
+  cac: 'Cac'
+  doc: 'Doc'
+  enum: 'Enum'
+
+# TODO: add include filters to limit to ESPD-relevant types once stable
+include: []
+exclude: []
+
+type_overrides: {}
+class_name_overrides: {}
+property_name_overrides: {}
+
+include_documentation: true
+generate_validation: true
+generate_validator_attributes: false
+include_generated_tag: true
+
+codelists:
+  dir: 'resources/codelists/gc'
+  namespace: 'Codelist'
+  name_overrides:
+    'http://publications.europa.eu/resource/authority/country': 'CountryCode'
+    'http://publications.europa.eu/resource/authority/language': 'LanguageCode'
+    'http://publications.europa.eu/resource/authority/currency': 'CurrencyCode'
+    'http://publications.europa.eu/resource/authority/criterion': 'CriterionCode'
+    'http://publications.europa.eu/resource/authority/occupation': 'OccupationCode'
+    'http://publications.europa.eu/resource/authority/economic-operator-size': 'EconomicOperatorSizeCode'
+    'http://publications.europa.eu/resource/authority/eo-role-type': 'EoRoleTypeCode'
+    'http://publications.europa.eu/resource/authority/access-right': 'AccessRightCode'
+    'http://publications.europa.eu/resource/authority/docrefcontent-type': 'DocRefContentTypeCode'
+  bindings:
+    'TenderingCriterionType.CriterionTypeCode': 'http://publications.europa.eu/resource/authority/criterion'
+    'TenderingCriterionPropertyType.TypeCode': 'criterion-element-type'
+    'TenderingCriterionPropertyType.ValueDataTypeCode': 'response-data-type'
+    'TenderingCriterionPropertyGroupType.PropertyGroupTypeCode': 'property-group-type'
+    'CountryType.IdentificationCode': 'http://publications.europa.eu/resource/authority/country'
+    'LanguageType.LocaleCode': 'http://publications.europa.eu/resource/authority/language'
+    'TenderingCriterionPropertyType.ExpectedCode':
+      - 'boolean-gui-control-type'
+      - 'financial-ratio-type'
+      - 'http://publications.europa.eu/resource/authority/occupation'
