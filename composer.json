@@ -30,7 +30,21 @@
             "Xterr\\Espd\\": "src/"
         }
     },
+    "suggest": {
+        "ext-saxonc": "Required for ESPD business rule validation (SaxonC-HE 12.x)"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Xterr\\Espd\\Tests\\": "tests/"
+        }
+    },
     "require-dev": {
-        "xterr/php-ubl-generator": "^1.0"
+        "xterr/php-ubl-generator": "^1.0",
+        "phpunit/phpunit": "^11.0",
+        "phpstan/phpstan": "^2.0"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "analyze": "phpstan analyze"
     }
 }

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QualificationApplicationRequest
+    xmlns="urn:oasis:names:specification:ubl:schema:xsd:QualificationApplicationRequest-2"
+    xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+    xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+  <cbc:UBLVersionID schemeAgencyID="OASIS-UBL-TC">2.3</cbc:UBLVersionID>
+  <cbc:ProfileExecutionID schemeAgencyID="OP" schemeVersionID="4.1.0">ESPD-EDMv4.1.0</cbc:ProfileExecutionID>
+  <cbc:ID schemeAgencyID="DGPE">ESPDREQ-TEST-001</cbc:ID>
+  <cbc:UUID schemeID="ISO/IEC 9834-8:2008 - 4UUID" schemeAgencyID="TEST" schemeVersionID="4.1.0">00000000-0000-0000-0000-000000000001</cbc:UUID>
+  <cbc:ContractFolderID schemeAgencyID="DGPE">TEST-CF-001</cbc:ContractFolderID>
+  <cbc:IssueDate>2025-01-01</cbc:IssueDate>
+  <cbc:QualificationApplicationTypeCode listID="QualificationApplicationType" listAgencyID="OP" listVersionID="4.1.0">SELFCONTAINED</cbc:QualificationApplicationTypeCode>
+  <cbc:ProcedureCode listID="http://publications.europa.eu/resource/authority/procurement-procedure-type" listAgencyID="OP" listVersionID="20250924-0">Open</cbc:ProcedureCode>
+  <cac:ContractingParty>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeAgencyID="TEST">TEST-CA-001</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>Test Contracting Authority</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:CityName>Brussels</cbc:CityName>
+        <cac:Country>
+          <cbc:IdentificationCode listID="http://publications.europa.eu/resource/authority/country" listAgencyID="OP" listVersionID="20250924-0">BEL</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+    </cac:Party>
+  </cac:ContractingParty>
+  <!-- 8 mandatory exclusion criteria -->
+  <cac:TenderingCriterion>
+    <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">005eb9ed-1347-4ca3-bb29-9bc0db64e1ab</cbc:ID>
+    <cbc:CriterionTypeCode listID="http://publications.europa.eu/resource/authority/criterion" listAgencyID="OP" listVersionID="20240612-0">crime-org</cbc:CriterionTypeCode>
+    <cbc:Name>Participation in a criminal organisation</cbc:Name>
+    <cbc:Description>Test criterion</cbc:Description>
+    <cac:TenderingCriterionPropertyGroup>
+      <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C1_EG_crime-org/QG1</cbc:ID>
+      <cbc:PropertyGroupTypeCode listID="property-group-type" listAgencyID="OP" listVersionID="4.1.0">ON*</cbc:PropertyGroupTypeCode>
+      <cac:TenderingCriterionProperty>
+        <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C1_EG_crime-org/QG1/Q1</cbc:ID>
+        <cbc:Name/>
+        <cbc:Description>Your answer</cbc:Description>
+        <cbc:TypeCode listID="criterion-element-type" listAgencyID="OP" listVersionID="4.1.0">QUESTION</cbc:TypeCode>
+        <cbc:ValueDataTypeCode listID="response-data-type" listAgencyID="OP" listVersionID="4.1.0">INDICATOR</cbc:ValueDataTypeCode>
+      </cac:TenderingCriterionProperty>
+    </cac:TenderingCriterionPropertyGroup>
+  </cac:TenderingCriterion>
+  <cac:TenderingCriterion>
+    <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">c27b7c4e-c837-4529-b867-ed55ce639db5</cbc:ID>
+    <cbc:CriterionTypeCode listID="http://publications.europa.eu/resource/authority/criterion" listAgencyID="OP" listVersionID="20240612-0">corruption</cbc:CriterionTypeCode>
+    <cbc:Name>Corruption</cbc:Name>
+    <cbc:Description>Test criterion</cbc:Description>
+    <cac:TenderingCriterionPropertyGroup>
+      <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C2_EG_corruption/QG1</cbc:ID>
+      <cbc:PropertyGroupTypeCode listID="property-group-type" listAgencyID="OP" listVersionID="4.1.0">ON*</cbc:PropertyGroupTypeCode>
+      <cac:TenderingCriterionProperty>
+        <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C2_EG_corruption/QG1/Q1</cbc:ID>
+        <cbc:Name/>
+        <cbc:Description>Your answer</cbc:Description>
+        <cbc:TypeCode listID="criterion-element-type" listAgencyID="OP" listVersionID="4.1.0">QUESTION</cbc:TypeCode>
+        <cbc:ValueDataTypeCode listID="response-data-type" listAgencyID="OP" listVersionID="4.1.0">INDICATOR</cbc:ValueDataTypeCode>
+      </cac:TenderingCriterionProperty>
+    </cac:TenderingCriterionPropertyGroup>
+  </cac:TenderingCriterion>
+  <cac:TenderingCriterion>
+    <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">297d2323-3ede-424e-94bc-a91561b6f320</cbc:ID>
+    <cbc:CriterionTypeCode listID="http://publications.europa.eu/resource/authority/criterion" listAgencyID="OP" listVersionID="20240612-0">fraud</cbc:CriterionTypeCode>
+    <cbc:Name>Fraud</cbc:Name>
+    <cbc:Description>Test criterion</cbc:Description>
+    <cac:TenderingCriterionPropertyGroup>
+      <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C3_EG_fraud/QG1</cbc:ID>
+      <cbc:PropertyGroupTypeCode listID="property-group-type" listAgencyID="OP" listVersionID="4.1.0">ON*</cbc:PropertyGroupTypeCode>
+      <cac:TenderingCriterionProperty>
+        <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C3_EG_fraud/QG1/Q1</cbc:ID>
+        <cbc:Name/>
+        <cbc:Description>Your answer</cbc:Description>
+        <cbc:TypeCode listID="criterion-element-type" listAgencyID="OP" listVersionID="4.1.0">QUESTION</cbc:TypeCode>
+        <cbc:ValueDataTypeCode listID="response-data-type" listAgencyID="OP" listVersionID="4.1.0">INDICATOR</cbc:ValueDataTypeCode>
+      </cac:TenderingCriterionProperty>
+    </cac:TenderingCriterionPropertyGroup>
+  </cac:TenderingCriterion>
+  <cac:TenderingCriterion>
+    <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">d486fb70-86b3-4e55-bfaa-76c36e9c0fad</cbc:ID>
+    <cbc:CriterionTypeCode listID="http://publications.europa.eu/resource/authority/criterion" listAgencyID="OP" listVersionID="20240612-0">terr-offence</cbc:CriterionTypeCode>
+    <cbc:Name>Terrorist offences</cbc:Name>
+    <cbc:Description>Test criterion</cbc:Description>
+    <cac:TenderingCriterionPropertyGroup>
+      <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C4_EG_terr-offence/QG1</cbc:ID>
+      <cbc:PropertyGroupTypeCode listID="property-group-type" listAgencyID="OP" listVersionID="4.1.0">ON*</cbc:PropertyGroupTypeCode>
+      <cac:TenderingCriterionProperty>
+        <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C4_EG_terr-offence/QG1/Q1</cbc:ID>
+        <cbc:Name/>
+        <cbc:Description>Your answer</cbc:Description>
+        <cbc:TypeCode listID="criterion-element-type" listAgencyID="OP" listVersionID="4.1.0">QUESTION</cbc:TypeCode>
+        <cbc:ValueDataTypeCode listID="response-data-type" listAgencyID="OP" listVersionID="4.1.0">INDICATOR</cbc:ValueDataTypeCode>
+      </cac:TenderingCriterionProperty>
+    </cac:TenderingCriterionPropertyGroup>
+  </cac:TenderingCriterion>
+  <cac:TenderingCriterion>
+    <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">47112079-6fec-47a3-988f-e561668c3aef</cbc:ID>
+    <cbc:CriterionTypeCode listID="http://publications.europa.eu/resource/authority/criterion" listAgencyID="OP" listVersionID="20240612-0">finan-laund</cbc:CriterionTypeCode>
+    <cbc:Name>Money laundering</cbc:Name>
+    <cbc:Description>Test criterion</cbc:Description>
+    <cac:TenderingCriterionPropertyGroup>
+      <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C5_EG_finan-laund/QG1</cbc:ID>
+      <cbc:PropertyGroupTypeCode listID="property-group-type" listAgencyID="OP" listVersionID="4.1.0">ON*</cbc:PropertyGroupTypeCode>
+      <cac:TenderingCriterionProperty>
+        <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C5_EG_finan-laund/QG1/Q1</cbc:ID>
+        <cbc:Name/>
+        <cbc:Description>Your answer</cbc:Description>
+        <cbc:TypeCode listID="criterion-element-type" listAgencyID="OP" listVersionID="4.1.0">QUESTION</cbc:TypeCode>
+        <cbc:ValueDataTypeCode listID="response-data-type" listAgencyID="OP" listVersionID="4.1.0">INDICATOR</cbc:ValueDataTypeCode>
+      </cac:TenderingCriterionProperty>
+    </cac:TenderingCriterionPropertyGroup>
+  </cac:TenderingCriterion>
+  <cac:TenderingCriterion>
+    <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">d789d01a-fe03-4ccd-9898-73f9cfa080d1</cbc:ID>
+    <cbc:CriterionTypeCode listID="http://publications.europa.eu/resource/authority/criterion" listAgencyID="OP" listVersionID="20240612-0">human-traffic</cbc:CriterionTypeCode>
+    <cbc:Name>Child labour</cbc:Name>
+    <cbc:Description>Test criterion</cbc:Description>
+    <cac:TenderingCriterionPropertyGroup>
+      <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C6_EG_human-traffic/QG1</cbc:ID>
+      <cbc:PropertyGroupTypeCode listID="property-group-type" listAgencyID="OP" listVersionID="4.1.0">ON*</cbc:PropertyGroupTypeCode>
+      <cac:TenderingCriterionProperty>
+        <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C6_EG_human-traffic/QG1/Q1</cbc:ID>
+        <cbc:Name/>
+        <cbc:Description>Your answer</cbc:Description>
+        <cbc:TypeCode listID="criterion-element-type" listAgencyID="OP" listVersionID="4.1.0">QUESTION</cbc:TypeCode>
+        <cbc:ValueDataTypeCode listID="response-data-type" listAgencyID="OP" listVersionID="4.1.0">INDICATOR</cbc:ValueDataTypeCode>
+      </cac:TenderingCriterionProperty>
+    </cac:TenderingCriterionPropertyGroup>
+  </cac:TenderingCriterion>
+  <cac:TenderingCriterion>
+    <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">b61bbeb7-690e-4a40-bc68-d6d4ecfaa3d4</cbc:ID>
+    <cbc:CriterionTypeCode listID="http://publications.europa.eu/resource/authority/criterion" listAgencyID="OP" listVersionID="20240612-0">tax-pay</cbc:CriterionTypeCode>
+    <cbc:Name>Payment of taxes</cbc:Name>
+    <cbc:Description>Test criterion</cbc:Description>
+    <cac:TenderingCriterionPropertyGroup>
+      <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C7_EG_tax-pay/QG1</cbc:ID>
+      <cbc:PropertyGroupTypeCode listID="property-group-type" listAgencyID="OP" listVersionID="4.1.0">ON*</cbc:PropertyGroupTypeCode>
+      <cac:TenderingCriterionProperty>
+        <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C7_EG_tax-pay/QG1/Q1</cbc:ID>
+        <cbc:Name/>
+        <cbc:Description>Your answer</cbc:Description>
+        <cbc:TypeCode listID="criterion-element-type" listAgencyID="OP" listVersionID="4.1.0">QUESTION</cbc:TypeCode>
+        <cbc:ValueDataTypeCode listID="response-data-type" listAgencyID="OP" listVersionID="4.1.0">INDICATOR</cbc:ValueDataTypeCode>
+      </cac:TenderingCriterionProperty>
+    </cac:TenderingCriterionPropertyGroup>
+  </cac:TenderingCriterion>
+  <cac:TenderingCriterion>
+    <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">7d85a556-9571-4c89-87de-2a0a3aeaa3f2</cbc:ID>
+    <cbc:CriterionTypeCode listID="http://publications.europa.eu/resource/authority/criterion" listAgencyID="OP" listVersionID="20240612-0">socsec-pay</cbc:CriterionTypeCode>
+    <cbc:Name>Payment of social security contributions</cbc:Name>
+    <cbc:Description>Test criterion</cbc:Description>
+    <cac:TenderingCriterionPropertyGroup>
+      <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C8_EG_socsec-pay/QG1</cbc:ID>
+      <cbc:PropertyGroupTypeCode listID="property-group-type" listAgencyID="OP" listVersionID="4.1.0">ON*</cbc:PropertyGroupTypeCode>
+      <cac:TenderingCriterionProperty>
+        <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">C8_EG_socsec-pay/QG1/Q1</cbc:ID>
+        <cbc:Name/>
+        <cbc:Description>Your answer</cbc:Description>
+        <cbc:TypeCode listID="criterion-element-type" listAgencyID="OP" listVersionID="4.1.0">QUESTION</cbc:TypeCode>
+        <cbc:ValueDataTypeCode listID="response-data-type" listAgencyID="OP" listVersionID="4.1.0">INDICATOR</cbc:ValueDataTypeCode>
+      </cac:TenderingCriterionProperty>
+    </cac:TenderingCriterionPropertyGroup>
+  </cac:TenderingCriterion>
+  <!-- 1 selection criterion -->
+  <cac:TenderingCriterion>
+    <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">9eeb6d5c-0eb8-48e8-a4c5-5087a7c900bf</cbc:ID>
+    <cbc:CriterionTypeCode listID="http://publications.europa.eu/resource/authority/criterion" listAgencyID="OP" listVersionID="20240612-0">prof-regist</cbc:CriterionTypeCode>
+    <cbc:Name>Enrolment in a relevant professional register</cbc:Name>
+    <cbc:Description>Test selection criterion</cbc:Description>
+    <cac:TenderingCriterionPropertyGroup>
+      <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">SC1_prof-regist/QG1</cbc:ID>
+      <cbc:PropertyGroupTypeCode listID="property-group-type" listAgencyID="OP" listVersionID="4.1.0">ON*</cbc:PropertyGroupTypeCode>
+      <cac:TenderingCriterionProperty>
+        <cbc:ID schemeID="Criterion" schemeAgencyID="OP" schemeVersionID="4.1.0">SC1_prof-regist/QG1/Q1</cbc:ID>
+        <cbc:Name/>
+        <cbc:Description>Your answer</cbc:Description>
+        <cbc:TypeCode listID="criterion-element-type" listAgencyID="OP" listVersionID="4.1.0">QUESTION</cbc:TypeCode>
+        <cbc:ValueDataTypeCode listID="response-data-type" listAgencyID="OP" listVersionID="4.1.0">INDICATOR</cbc:ValueDataTypeCode>
+      </cac:TenderingCriterionProperty>
+    </cac:TenderingCriterionPropertyGroup>
+  </cac:TenderingCriterion>
+</QualificationApplicationRequest>

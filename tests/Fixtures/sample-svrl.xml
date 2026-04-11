@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+    <svrl:active-pattern id="BR-OTH-CARD" name="Cardinality"/>
+    <svrl:fired-rule context="/*"/>
+    <svrl:failed-assert test="(cbc:UBLVersionID)" id="BR-OTH-04-01" flag="fatal"
+        location="/*[local-name()='QualificationApplicationRequest']">
+        <svrl:text>The element '/cbc:UBLVersionID' is mandatory.</svrl:text>
+    </svrl:failed-assert>
+    <svrl:failed-assert test="(cbc:ID)" id="BR-OTH-04-03" flag="error"
+        location="/*[local-name()='QualificationApplicationRequest']">
+        <svrl:text>The element '/cbc:ID' is mandatory.</svrl:text>
+    </svrl:failed-assert>
+    <svrl:active-pattern id="BR-REQ-CR" name="Criterion"/>
+    <svrl:fired-rule context="/*"/>
+    <svrl:failed-assert test="count(cac:TenderingCriterion) &gt; 0" id="BR-REQ-30" flag="warning"
+        location="/*[local-name()='QualificationApplicationRequest']">
+        <svrl:text>Exclusion criteria are required.</svrl:text>
+    </svrl:failed-assert>
+</svrl:schematron-output>

@@ -1,0 +1,7 @@
+parameters:
+    level: 8
+    paths:
+        - src/Validation/
+    scanFiles:
+        - stubs/saxon.php
+    reportUnmatchedIgnoredErrors: false
