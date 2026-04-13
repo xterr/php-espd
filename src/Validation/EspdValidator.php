@@ -46,7 +46,7 @@ final class EspdValidator
         );
     }
 
-    public function validate(QualificationApplicationRequest|QualificationApplicationResponse $document): ValidationResult
+    public function validate(QualificationApplicationRequest|QualificationApplicationResponse $document, ?VersionFamily $version = null): ValidationResult
     {
         $type = match (true) {
             $document instanceof QualificationApplicationRequest => DocumentType::Request,
@@ -55,13 +55,22 @@ final class EspdValidator
 
         $xml = $this->serializer->serialize($document);
 
-        return $this->validateXml($xml, $type);
+        return $this->validateXml($xml, $type, $version);
     }
 
-    public function validateXml(string $xml, DocumentType $type): ValidationResult
+    public function validateXml(string $xml, DocumentType $type, ?VersionFamily $version = null): ValidationResult
     {
         if (preg_match('/<!DOCTYPE/i', $xml) === 1) {
             throw new Exception\ValidationException('XML input must not contain a DOCTYPE declaration.');
+        }
+
+        if ($version === null) {
+            $version = VersionDetector::detect($xml);
+            if ($version === null) {
+                throw new Exception\ValidationException(
+                    'Could not detect ESPD-EDM version from ProfileExecutionID. Specify the version explicitly.',
+                );
+            }
         }
 
         try {
@@ -74,9 +83,9 @@ final class EspdValidator
         }
 
         $violationSets = [];
-        $xslDir = $this->resourcesDir . '/' . $type->xslDirectory() . '/xsl';
+        $xslDir = $this->resourcesDir . '/' . $version->value . '/' . $type->xslDirectory() . '/xsl';
 
-        foreach ($type->ruleFiles($this->resourcesDir) as $ruleFile) {
+        foreach ($type->ruleFiles($this->resourcesDir, $version) as $ruleFile) {
             $xslPath = $xslDir . '/' . $ruleFile;
 
             try {

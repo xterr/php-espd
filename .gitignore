@@ -9,3 +9,5 @@ composer.lock
 /resources/*
 !/resources/validation/
 !/resources/criterion/
+!/resources/cl/
+!/resources/codelists/

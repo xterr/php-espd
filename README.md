@@ -5,16 +5,17 @@
 [![Packagist Version](https://img.shields.io/packagist/v/xterr/php-espd)](https://packagist.org/packages/xterr/php-espd)
 [![PHPStan Level 8](https://img.shields.io/badge/PHPStan-level%208-brightgreen)](https://phpstan.org/)
 
-Typed PHP classes for ESPD (European Single Procurement Document) based on ESPD-EDM v4.1.0 / UBL 2.3.
+Typed PHP classes for ESPD (European Single Procurement Document) based on ESPD-EDM v2.1.1–v4.1.0 / UBL 2.3.
 
-Serialize and deserialize `QualificationApplicationRequest` and `QualificationApplicationResponse` documents without DOM code. Validate documents against the official OP-TED Schematron business rules with 1:1 compliance. Codelist values are PHP enums with full type safety, including union-typed properties for elements that span multiple codelists.
+Serialize and deserialize `QualificationApplicationRequest` and `QualificationApplicationResponse` documents without DOM code, with multi-version support (v2.1.1 through v4.1.0). Validate documents against the official OP-TED Schematron business rules with 1:1 compliance. Codelist values are PHP enums with full type safety, including union-typed properties for elements that span multiple codelists.
 
 ## Features
 
 - **325 Generated Classes** — 2 document roots, 290 aggregate types, 8 leaf value types, 16 codelist enums, 5 XSD enums, 2 registries
-- **Business Rule Validation** — Official OP-TED ESPD-EDM v4.1.0 Schematron rules via SaxonC-HE XSLT processor, 1:1 compliant with the EU reference validator
+- **Business Rule Validation** — Official OP-TED ESPD-EDM Schematron rules for v2.1.1, v3.3.0, v4.0.0, and v4.1.0 via SaxonC-HE XSLT processor, 1:1 compliant with the EU reference validator
 - **Codelist Enums** — `CriterionCode`, `CriterionElement`, `ResponseData`, `PropertyGroup`, `CountryCode`, `LanguageCode`, and 10 more
 - **Union Enum Types** — `ExpectedCode` resolves to `BooleanGUIControl|FinancialRatio|OccupationCode` based on `listID` at runtime
+- **Multi-Version Support** — Deserialize and validate ESPD documents from v2.1.1, v3.3.0, v4.0.0, and v4.1.0. V2 long-form criterion codes automatically merge into the `CriterionCode` enum with `V2_` prefix and bidirectional v2↔v4 mapping
 - **Criterion Taxonomy** — `ESPD-criterion.xml` ships as a resource, deserializable into the generated classes
 - **Full Round-Trip** — serialize → deserialize produces identical object graphs
 
@@ -112,6 +113,28 @@ $prop->getTypeCode();                                   // CriterionElement::QUE
 $prop->getValueDataTypeCode();                          // ResponseData::INDICATOR
 ```
 
+### Multi-version deserialization
+
+The library supports ESPD documents from all major versions. V2 long-form criterion codes are automatically resolved:
+
+```php
+// V2 document — long-form codes resolve to V2_ prefixed enum cases
+$v2Request = $deserializer->deserialize($v2Xml, QualificationApplicationRequest::class);
+$code = $v2Request->getTenderingCriterions()[0]->getCriterionTypeCode();
+// CriterionCode::V2_CRITERION_EXCLUSION_CONVICTIONS_CORRUPTION
+
+$code->isLegacy();        // true — it's a v2 long-form code
+$code->toV4Equivalent();  // CriterionCode::CORRUPTION — the v4 equivalent
+
+// V3/V4 documents — short-form codes work as before
+$v4Request = $deserializer->deserialize($v4Xml, QualificationApplicationRequest::class);
+$code = $v4Request->getTenderingCriterions()[0]->getCriterionTypeCode();
+// CriterionCode::CRIME_ORG
+
+$code->isLegacy();        // false
+$code->toV4Equivalent();  // CriterionCode::CRIME_ORG (returns self)
+```
+
 ### Union enum — ExpectedCode
 
 `ExpectedCode` can hold values from three different codelists depending on the criterion context. The `listID` XML attribute acts as the runtime discriminator:
@@ -141,7 +164,41 @@ foreach ($taxonomy->getTenderingCriterions() as $criterion) {
 
 ## Validation
 
-The validation subsystem runs the official [OP-TED/ESPD-EDM v4.1.0](https://github.com/OP-TED/ESPD-EDM/tree/v4.1.0/validation) Schematron business rules via SaxonC-HE. This guarantees 1:1 compliance with the EU reference validator — identical rule IDs, severity levels, and error messages.
+The validation subsystem runs the official [OP-TED/ESPD-EDM](https://github.com/OP-TED/ESPD-EDM) Schematron business rules via SaxonC-HE. This guarantees 1:1 compliance with the EU reference validator — identical rule IDs, severity levels, and error messages.
+
+### Multi-version validation
+
+The validator supports **4 ESPD-EDM version families** and automatically detects which rule set to apply based on the document's `ProfileExecutionID`:
+
+| Version Family | Rule Set | ProfileExecutionID values |
+|----------------|----------|---------------------------|
+| `VersionFamily::V2` | v2.1.1 | `ESPD-EDMv2.0.0-REGULATED`, `ESPD-EDMv2.0.0-SELFCONTAINED`, `ESPD-EDMv2.1.0-REGULATED`, `ESPD-EDMv2.1.0-SELFCONTAINED`, `ESPD-EDMv2.1.1-BASIC`, `ESPD-EDMv2.1.1-EXTENDED` |
+| `VersionFamily::V3` | v3.3.0 | `ESPD-EDMv3.0.0`, `ESPD-EDMv3.0.1`, `ESPD-EDMv3.1.0`, `ESPD-EDMv3.2.0`, `ESPD-EDMv3.3.0` |
+| `VersionFamily::V4_0` | v4.0.0 | `ESPD-EDMv4.0.0` |
+| `VersionFamily::V4_1` | v4.1.0 | `ESPD-EDMv4.1.0` |
+
+**Auto-detection** (recommended) — the validator reads `ProfileExecutionID` from the XML and selects the matching rule set:
+
+```php
+use Xterr\Espd\Validation\EspdValidator;
+
+$validator = EspdValidator::create();
+
+// Version is auto-detected from the document's ProfileExecutionID
+$result = $validator->validate($request);
+$result = $validator->validateXml($xml, DocumentType::Request);
+```
+
+**Explicit version** — useful when the document lacks a `ProfileExecutionID` or you want to force a specific rule set:
+
+```php
+use Xterr\Espd\Validation\VersionFamily;
+
+$result = $validator->validate($request, VersionFamily::V2);
+$result = $validator->validateXml($xml, DocumentType::Response, VersionFamily::V3);
+```
+
+If auto-detection fails (missing or unrecognized `ProfileExecutionID`), a `ValidationException` is thrown prompting you to specify the version explicitly.
 
 ### What gets validated
 
@@ -293,7 +350,7 @@ php -r "echo (new Saxon\SaxonProcessor())->version() . PHP_EOL;"
 
 ## Schema Source
 
-Generated from [OP-TED/ESPD-EDM](https://github.com/OP-TED/ESPD-EDM) v4.1.0, which uses OASIS UBL 2.3 OS schemas. The XSD schemas and Genericode codelist files are in `resources/` (not committed — dev-only). The pre-compiled Schematron XSL validation rules are bundled in `resources/validation/`.
+Generated from [OP-TED/ESPD-EDM](https://github.com/OP-TED/ESPD-EDM) v4.1.0, which uses OASIS UBL 2.3 OS schemas. The XSD schemas and Genericode codelist files are in `resources/` (not committed — dev-only). The pre-compiled Schematron XSL validation rules are bundled in `resources/validation/` for all 4 version families (v2.1.1, v3.3.0, v4.0.0, v4.1.0). V2.1.1 codelist GC files are in `resources/cl/gc/`.
 
 ## Regenerating
 

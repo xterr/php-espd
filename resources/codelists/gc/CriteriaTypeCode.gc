@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gc:CodeList xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/">
+  <Identification>
+    <ShortName>CriteriaTypeCode</ShortName>
+    <LongName>CriteriaTypeCode</LongName>
+    <LongName Identifier="listId">CriteriaTypeCode</LongName>
+    <Version>2.1.1</Version>
+    <Agency>
+      <ShortName>EU-COM-GROW</ShortName>
+      <Identifier Identifier="EU-COM-GROW"/>
+    </Agency>
+  </Identification>
+  <ColumnSet>
+    <Column Id="code" Use="required">
+      <ShortName>Code</ShortName>
+      <Data Type="normalizedString" Lang="eng"/>
+    </Column>
+    <Column Id="Name" Use="optional">
+      <ShortName>Name</ShortName>
+      <Data Type="string" Lang="eng"/>
+    </Column>
+  </ColumnSet>
+  <SimpleCodeList>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONVICTIONS.PARTICIPATION_IN_CRIMINAL_ORGANISATION</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Participation in a criminal organisation</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONVICTIONS.CORRUPTION</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Corruption</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONVICTIONS.FRAUD</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Fraud</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONVICTIONS.TERRORIST_OFFENCES</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Terrorist offences or offences linked to terrorist activities</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONVICTIONS.MONEY_LAUNDERING</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Money laundering or terrorist financing</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONVICTIONS.CHILD_LABOUR-HUMAN_TRAFFICKING</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Child labour and other forms of trafficking in human beings</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONTRIBUTIONS.PAYMENT_OF_TAXES</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Payment of taxes</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONTRIBUTIONS.PAYMENT_OF_SOCIAL_SECURITY</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Payment of social security contributions</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.SOCIAL.ENVIRONMENTAL_LAW</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Breaching of obligations in the fields of environmental law</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.SOCIAL.SOCIAL_LAW</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Breaching of obligations in the fields of social law</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.SOCIAL.LABOUR_LAW</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Breaching of obligations in the fields of labour law</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.BUSINESS.BANKRUPTCY</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Bankruptcy</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.BUSINESS.INSOLVENCY</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Insolvency</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.BUSINESS.CREDITORS_ARRANGEMENT</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Arrangement with creditors</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.BUSINESS.BANKRUPTCY_ANALOGOUS</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Analogous situation like bankruptcy under national law</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.BUSINESS.LIQUIDATOR_ADMINISTERED</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Assets being administered by liquidator</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.BUSINESS.ACTIVITIES_SUSPENDED</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Business activities are suspended</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.MISCONDUCT.MC_PROFESSIONAL</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Guilty of grave professional misconduct</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.MISCONDUCT.MARKET_DISTORTION</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Agreements with other economic operators aimed at distorting competition</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONFLICT_OF_INTEREST.PROCEDURE_PARTICIPATION</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Conflict of interest due to its participation in the procurement procedure</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONFLICT_OF_INTEREST.PROCEDURE_PREPARATION</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Direct or indirect involvement in the preparation of this procurement procedure</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONFLICT_OF_INTEREST.EARLY_TERMINATION</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Early termination, damages or other comparable sanctions</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.CONFLICT_OF_INTEREST.MISINTERPRETATION</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Guilty of misinterpretation, withheld information, unable to provide required documents and obtained confidential information of this procedure</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.EXCLUSION.NATIONAL.OTHER</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Purely national exclusion grounds</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.SUITABILITY.PROFESSIONAL_REGISTER_ENROLMENT</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Enrolment in a relevant professional register</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.SUITABILITY.TRADE_REGISTER_ENROLMENT</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Enrolment in a trade register</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.SUITABILITY.AUTHORISATION</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>For service contracts: authorisation of particular organisation needed</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.SUITABILITY.MEMBERSHIP</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>For service contracts: membership of particular organisation needed</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.ECONOMIC_FINANCIAL_STANDING.TURNOVER.GENERAL_YEARLY</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>General yearly turnover</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.ECONOMIC_FINANCIAL_STANDING.TURNOVER.AVERAGE_YEARLY</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Average yearly turnover</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.ECONOMIC_FINANCIAL_STANDING.TURNOVER.SPECIFIC_AVERAGE</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Specific average turnover</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.ECONOMIC_FINANCIAL_STANDING.TURNOVER.SPECIFIC_YEARLY</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Specific yearly turnover</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.ECONOMIC_FINANCIAL_STANDING.TURNOVER.SET_UP</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Set up of economic operator</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.ECONOMIC_FINANCIAL_STANDING.FINANCIAL_RATIO</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Financial ratio</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.ECONOMIC_FINANCIAL_STANDING.RISK_INDEMNITY_INSURANCE</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Professional risk indemnity insurance</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.ECONOMIC_FINANCIAL_STANDING.OTHER_REQUIREMENTS</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Other economic or financial requirements</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.REFERENCES.WORKS_PERFORMANCE</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>For works contracts: performance of works of the specified type</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.REFERENCES.SUPPLIES_DELIVERY_PERFORMANCE</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>For supply contracts: performance of deliveries of the specified type</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.REFERENCES.SERVICES_DELIVERY_PERFORMANCE</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>For service contracts: performance of services of the specified type</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.TECHNICAL.TECHNICIANS_FOR_QUALITY_CONTROL</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Technicians or technical bodies for quality control</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.TECHNICAL.TECHNICIANS_FOR_CARRYING_WORKS</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>For works contracts: technicians or technical bodies to carry out the work</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.TECHNICAL.FACILITIES_FOR_QUALITY_ENSURING</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Technical facilities and measures for ensuring quality</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.TECHNICAL.FACILITIES_FOR_STUDY_RESEARCH</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Study and research facilities</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.TECHNICAL.SUPPLY_CHAIN_MANAGEMENT</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Supply chain management</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.TECHNICAL.PROFESSIONAL_QUALIFICATIONS</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Educational and professional qualifications</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.TECHNICAL.ENVIRONMENTAL_MANAGEMENT_MEASURES</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Environmental management measures</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.TECHNICAL.EQUIPMENT</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Tools, plant or technical equipment</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.TECHNICAL.CHECKS.ALLOWANCE_OF_CHECKS</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Allowance of checks</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.MANAGEMENT.MANAGERIAL_STAFF</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Number of managerial staff</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.MANAGEMENT.AVERAGE_ANNUAL_MANPOWER</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Average annual manpower</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.MANAGEMENT.SUBCONTRACTING_PROPORTION</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Subcontracting proportion</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.MANAGEMENT.ARTEFACTS.NO_AUTHENTICATED_ARTEFACTS</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>For supply contracts: samples, descriptions or photographs without certification of authenticity</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.MANAGEMENT.ARTEFACTS.AUTHENTICATED_ARTEFACTS</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>For supply contracts: samples, descriptions or photographs with certification of authenticity</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.CERTIFICATES.QUALITY_ASSURANCE.QA_INSTITUTES_CERTIFICATE</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>For supply contracts: certificates by quality control institutes</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.CERTIFICATES.QUALITY_ASSURANCE.QA_INDEPENDENT_CERTIFICATE</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Certificates by independent bodies about quality assurance standards</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.TECHNICAL_PROFESSIONAL_ABILITY.CERTIFICATES.ENVIRONMENTAL_MANAGEMENT.ENV_INDEPENDENT_CERTIFICATE</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Certificates by independent bodies about environmental management systems or standards</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.OTHER.EO_DATA.SHELTERED_WORKSHOP</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>EO is a sheltered workshop</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.OTHER.EO_DATA.REGISTERED_IN_OFFICIAL_LIST</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>EO registered in a PQS</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.OTHER.EO_DATA.TOGETHER_WITH_OTHERS</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>EO together with others</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.OTHER.EO_DATA.RELIES_ON_OTHER_CAPACITIES</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Relied on entities</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.OTHER.EO_DATA.SUBCONTRACTS_WITH_THIRD_PARTIES</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Not relied on entities</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.OTHER.EO_DATA.LOTS_TENDERED</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Lots the EO tenders to</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.OTHER.EO_DATA.REDUCTION_OF_CANDIDATES</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Reduction of the number of qualified candidates</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.DEFENCE.SELECTION.OTHER</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Supplementary evidence for procurement procedures regulated by 2009/81/EC Directive</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.UTILITIES.SELECTION.OTHER</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Supplementary evidence for procurement procedures regulated by 2004/17/EC Directive</SimpleValue>
+      </Value>
+    </Row>
+    <Row>
+      <Value ColumnRef="code">
+        <SimpleValue>CRITERION.SELECTION.ALL</SimpleValue>
+      </Value>
+      <Value ColumnRef="Name">
+        <SimpleValue>Global indication for all selection criteria</SimpleValue>
+      </Value>
+    </Row>
+  </SimpleCodeList>
+</gc:CodeList>

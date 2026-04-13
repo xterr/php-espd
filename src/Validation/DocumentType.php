@@ -10,11 +10,11 @@ enum DocumentType
     case Response;
 
     /** @return list<string> */
-    public function ruleFiles(string $resourcesDir): array
+    public function ruleFiles(string $resourcesDir, VersionFamily $version): array
     {
         static $cache = [];
 
-        $dir = $resourcesDir . '/' . $this->xslDirectory() . '/xsl';
+        $dir = $resourcesDir . '/' . $version->value . '/' . $this->xslDirectory() . '/xsl';
 
         if (!isset($cache[$dir])) {
             $pattern = $dir . '/*.xsl';
