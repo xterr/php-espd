@@ -24,6 +24,8 @@ final class GenerateCommand extends Command
     private const V4_TAXONOMY = 'resources/criterion/v4.1.0/ESPD-criterion.xml';
     private const MAPPING_OUTPUT = 'resources/criterion/v2-to-v4-mapping.php';
     private const GC_OUTPUT = 'resources/codelists/gc/CriteriaTypeCode.gc';
+    private const CRITERION_LIST = 'resources/validation/v4.1.0/ESPDRequest/xsl/criterionList.xml';
+    private const PART_MAPPING_OUTPUT = 'resources/criterion/code-to-part.php';
     private const GENERATOR_CONFIG = 'ubl-generator.yaml';
 
     protected function configure(): void
@@ -69,6 +71,28 @@ final class GenerateCommand extends Command
 
         $mapper->generateMappingFile($mapping, self::MAPPING_OUTPUT);
         $io->text('  → ' . self::MAPPING_OUTPUT);
+
+        $io->section('Step 3b: Generating code-to-part mapping');
+
+        $criterionListParts = $mapper->parseCriterionList(self::CRITERION_LIST);
+        $io->text(sprintf('  Criterion list: %d codes classified', count($criterionListParts)));
+
+        $partMapping = $mapper->buildPartMapping($criterionListParts, $v4Map, $mapping, $v2Map);
+        $io->text(sprintf('  Part mapping: %d codes total', count($partMapping)));
+
+        $unmappedV4 = 0;
+        foreach ($v4Map as $v4) {
+            if (!isset($partMapping[$v4['code']])) {
+                $io->warning(sprintf('  Unmapped v4 code: %s', $v4['code']));
+                $unmappedV4++;
+            }
+        }
+        if ($unmappedV4 > 0) {
+            $io->warning(sprintf('  %d v4 codes without Part assignment', $unmappedV4));
+        }
+
+        $mapper->generatePartMappingFile($partMapping, self::PART_MAPPING_OUTPUT);
+        $io->text('  → ' . self::PART_MAPPING_OUTPUT);
 
         $io->section('Step 4: Generating CriteriaTypeCode.gc');
 

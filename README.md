@@ -16,6 +16,7 @@ Serialize and deserialize `QualificationApplicationRequest` and `QualificationAp
 - **Codelist Enums** — `CriterionCode`, `CriterionElement`, `ResponseData`, `PropertyGroup`, `CountryCode`, `LanguageCode`, and 10 more
 - **Union Enum Types** — `ExpectedCode` resolves to `BooleanGUIControl|FinancialRatio|OccupationCode` based on `listID` at runtime
 - **Multi-Version Support** — Deserialize and validate ESPD documents from v2.1.1, v3.3.0, v4.0.0, and v4.1.0. V2 long-form criterion codes automatically merge into the `CriterionCode` enum with `V2_` prefix and bidirectional v2↔v4 mapping
+- **ESPD Part & Section Classification** — `CriterionCode::getPart()` returns the `EspdPart` enum (I–VI per [EU Regulation 2016/7](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0007)), `getSection()` returns the sub-section letter (A–D, α) per [Directive 2014/24/EU](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32014L0024) Articles 57–62
 - **Criterion Taxonomy** — `ESPD-criterion.xml` ships as a resource, deserializable into the generated classes
 - **Full Round-Trip** — serialize → deserialize produces identical object graphs
 
@@ -134,6 +135,45 @@ $code = $v4Request->getTenderingCriterions()[0]->getCriterionTypeCode();
 $code->isLegacy();        // false
 $code->toV4Equivalent();  // CriterionCode::CRIME_ORG (returns self)
 ```
+
+### Criterion Part & Section classification
+
+Every criterion code knows its position in the ESPD form hierarchy defined by [Commission Implementing Regulation (EU) 2016/7](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0007):
+
+```php
+use Xterr\Espd\Codelist\CriterionCode;
+use Xterr\Espd\Codelist\EspdPart;
+
+$code = CriterionCode::CORRUPTION;
+
+$code->getPart();      // EspdPart::III
+$code->getPart()->label(); // "Exclusion grounds"
+$code->getSection();   // "A" — Criminal convictions (Directive 2014/24/EU Art. 57(1))
+
+// Works for all codes — v4 short-form and v2 legacy
+CriterionCode::PROF_REGIST->getPart();    // EspdPart::IV (Selection criteria)
+CriterionCode::PROF_REGIST->getSection(); // "A" (Suitability)
+
+CriterionCode::SME->getPart();            // EspdPart::II (Economic operator info)
+CriterionCode::SME->getSection();         // "A"
+
+CriterionCode::STAFF_RED->getPart();      // EspdPart::V (Reduction of candidates)
+
+// V2 codes inherit Part/Section from their v4 equivalent
+CriterionCode::V2_CRITERION_EXCLUSION_CONVICTIONS_CORRUPTION->getPart();    // EspdPart::III
+CriterionCode::V2_CRITERION_EXCLUSION_CONVICTIONS_CORRUPTION->getSection(); // "A"
+```
+
+**ESPD Form Parts** (per EU Regulation 2016/7, Annex 2):
+
+| Part | Title | Sections |
+|------|-------|----------|
+| I | Information concerning the procurement procedure | — |
+| II | Information concerning the economic operator | A, B, C, D |
+| III | Exclusion grounds | A (Criminal convictions), B (Taxes/social security), C (Insolvency/misconduct), D (National grounds) |
+| IV | Selection criteria | α (Global indication), A (Suitability), B (Economic standing), C (Technical ability), D (Quality/environment certs) |
+| V | Reduction of the number of qualified candidates | — |
+| VI | Concluding statements | — |
 
 ### Union enum — ExpectedCode
 
@@ -263,7 +303,8 @@ src/
 
 | Enum | listID | Values |
 |------|--------|--------|
-| `CriterionCode` | `criterion` | `crime-org`, `corruption`, `fraud`, ... |
+| `CriterionCode` | `criterion` | `crime-org`, `corruption`, `fraud`, ... (+ `getPart()`, `getSection()`) |
+| `EspdPart` | — | `I`, `II`, `III`, `IV`, `V`, `VI` (EU Regulation 2016/7 form Parts) |
 | `CriterionElement` | `criterion-element-type` | `QUESTION`, `REQUIREMENT`, `CRITERION`, ... |
 | `ResponseData` | `response-data-type` | `INDICATOR`, `AMOUNT`, `DATE`, `DESCRIPTION`, ... |
 | `PropertyGroup` | `property-group-type` | `ON*`, `ONTRUE`, `ONFALSE` |
@@ -363,8 +404,9 @@ php php-espd espd:generate --force
 ### What it does
 
 1. **Parses criterion taxonomies** — reads ESPD-EDM v2.1.1 and v4.1.0 taxonomy XML files
-2. **Cross-references UUIDs** — matches v2 long-form codes to v4 short-form codes by criterion UUID
-3. **Generates mapping file** — writes `resources/criterion/v2-to-v4-mapping.php` (v2 → v4 lookup)
+2. **Cross-references UUIDs** — matches v2 long-form codes to v4 short-form codes by criterion UUID (+ 6 manual EO_DATA equivalences for codes where v4 uses structured IDs instead of UUIDs)
+3. **Generates v2→v4 mapping file** — writes `resources/criterion/v2-to-v4-mapping.php` (v2 → v4 lookup)
+3b. **Generates code-to-part mapping** — parses `criterionList.xml` for exclusion/selection classification, resolves sub-sections from v2 code prefixes and [EU Regulation 2016/7](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0007) Annex 2, writes `resources/criterion/code-to-part.php`
 4. **Generates Genericode file** — writes `resources/codelists/gc/CriteriaTypeCode.gc` with all v2 codes
 5. **Runs UBL generator** — regenerates all PHP classes, codelist enums, and registries from XSD schemas and Genericode files
 
@@ -389,10 +431,15 @@ Step 1: Parsing criterion taxonomies
   V4 taxonomy: 62 criteria
 
 Step 2: Cross-referencing UUIDs
-  Mapped: 55 codes, V2-only: 11 codes
+  Mapped: 61 codes, V2-only: 5 codes
 
 Step 3: Generating v2→v4 mapping file
   → resources/criterion/v2-to-v4-mapping.php
+
+Step 3b: Generating code-to-part mapping
+  Criterion list: 55 codes classified
+  Part mapping: 130 codes total
+  → resources/criterion/code-to-part.php
 
 Step 4: Generating CriteriaTypeCode.gc
   → resources/codelists/gc/CriteriaTypeCode.gc
@@ -434,6 +481,16 @@ php php-espd espd:generate --force
 # Regenerate only codelist enums (faster)
 php php-espd espd:generate --force --codelists-only
 ```
+
+## EU Legislation References
+
+The ESPD form structure and criterion classification are defined by EU legislation:
+
+| Document | Reference | Relevance |
+|----------|-----------|-----------|
+| [Commission Implementing Regulation (EU) 2016/7](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0007) | Standard form for the ESPD | Defines the 6-part form structure (Parts I–VI) with sections A–D, used by `EspdPart` enum and `getPart()`/`getSection()` |
+| [Directive 2014/24/EU](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32014L0024) | Public procurement directive | Art. 57: exclusion grounds (Parts III-A/B/C/D), Art. 58: selection criteria (Parts IV-A/B/C), Art. 62: quality/environment certificates (Part IV-D) |
+| [ESPD-EDM](https://github.com/OP-TED/ESPD-EDM) (OP-TED) | Exchange Data Model | Source of criterion taxonomy XML, Schematron validation rules, and Genericode codelists used by this library |
 
 ## License
 
