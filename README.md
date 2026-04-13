@@ -130,7 +130,7 @@ if ($expectedCode instanceof \Xterr\Espd\Codelist\BooleanGUIControl) {
 The full ESPD criterion tree ships as a resource:
 
 ```php
-$taxonomyXml = file_get_contents('vendor/xterr/php-espd/resources/criterion/ESPD-criterion.xml');
+$taxonomyXml = file_get_contents('vendor/xterr/php-espd/resources/criterion/v4.1.0/ESPD-criterion.xml');
 $taxonomy = $deserializer->deserialize($taxonomyXml, QualificationApplicationRequest::class);
 
 // 62 criteria with their property groups, questions, and response types
@@ -297,10 +297,66 @@ Generated from [OP-TED/ESPD-EDM](https://github.com/OP-TED/ESPD-EDM) v4.1.0, whi
 
 ## Regenerating
 
-```bash
-composer require --dev xterr/php-ubl-generator
+The `php-espd` CLI tool orchestrates the full code generation pipeline:
 
-php vendor/bin/php-ubl-generator --config=ubl-generator.yaml --force
+```bash
+php php-espd espd:generate --force
+```
+
+### What it does
+
+1. **Parses criterion taxonomies** — reads ESPD-EDM v2.1.1 and v4.1.0 taxonomy XML files
+2. **Cross-references UUIDs** — matches v2 long-form codes to v4 short-form codes by criterion UUID
+3. **Generates mapping file** — writes `resources/criterion/v2-to-v4-mapping.php` (v2 → v4 lookup)
+4. **Generates Genericode file** — writes `resources/codelists/gc/CriteriaTypeCode.gc` with all v2 codes
+5. **Runs UBL generator** — regenerates all PHP classes, codelist enums, and registries from XSD schemas and Genericode files
+
+The generator automatically merges v2 criterion codes into `CriterionCode` with a `V2_` prefix and injects the `CriterionCodeMethods` trait for v2↔v4 conversion.
+
+### Options
+
+| Option | Description |
+|--------|-------------|
+| `--force`, `-f` | Actually generate files (without this, dry-run only) |
+| `--codelists-only` | Only regenerate codelist enums (skip class generation) |
+| `--mapping-only` | Only regenerate v2→v4 mapping files (skip UBL generator) |
+
+### Example output
+
+```
+ESPD PHP Code Generator
+=======================
+
+Step 1: Parsing criterion taxonomies
+  V2 taxonomy: 66 criteria
+  V4 taxonomy: 62 criteria
+
+Step 2: Cross-referencing UUIDs
+  Mapped: 55 codes, V2-only: 11 codes
+
+Step 3: Generating v2→v4 mapping file
+  → resources/criterion/v2-to-v4-mapping.php
+
+Step 4: Generating CriteriaTypeCode.gc
+  → resources/codelists/gc/CriteriaTypeCode.gc
+
+Step 5: Running UBL generator
+  Loading XSD schemas...
+  Emitting codelist enums...
+
+Result
+  UBL 2.3: 8 CBC classes, 292 CAC classes, 2 document roots, 5 enums, 16 codelist enums, 325 total files
+```
+
+### Multi-version support
+
+The generated `CriterionCode` enum contains both v4 short codes (`crime-org`, `corruption`, ...) and v2 long-form codes prefixed with `V2_` (`CRITERION.EXCLUSION.CONVICTIONS.PARTICIPATION_IN_CRIMINAL_ORGANISATION`, ...). This allows deserializing ESPD documents from both v2.x and v4.x without data loss:
+
+```php
+$code = CriterionCode::V2_CRITERION_EXCLUSION_CONVICTIONS_CORRUPTION;
+
+$code->isLegacy();        // true
+$code->toV4Equivalent();  // CriterionCode::CORRUPTION
 ```
 
 ## Development
@@ -315,8 +371,11 @@ composer test
 # Run static analysis
 composer analyze
 
-# Regenerate classes
-php vendor/bin/php-ubl-generator --config=ubl-generator.yaml --force
+# Regenerate all classes and codelists
+php php-espd espd:generate --force
+
+# Regenerate only codelist enums (faster)
+php php-espd espd:generate --force --codelists-only
 ```
 
 ## License

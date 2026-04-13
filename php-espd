@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+$autoloadPaths = [
+    __DIR__ . '/vendor/autoload.php',
+    __DIR__ . '/../../autoload.php',
+];
+
+$autoloaded = false;
+foreach ($autoloadPaths as $autoloadPath) {
+    if (file_exists($autoloadPath)) {
+        require $autoloadPath;
+        $autoloaded = true;
+        break;
+    }
+}
+
+if (!$autoloaded) {
+    fwrite(STDERR, "Could not find autoloader. Run 'composer install' first.\n");
+    exit(1);
+}
+
+use Symfony\Component\Console\Application;
+use Xterr\Espd\Command\GenerateCommand;
+
+/** @var array{version?: string} $composerJson */
+$composerJson = json_decode((string) file_get_contents(__DIR__ . '/composer.json'), true);
+$application = new Application('php-espd', $composerJson['version'] ?? 'dev');
+$application->addCommand(new GenerateCommand());
+$application->setDefaultCommand('espd:generate');
+$application->run();
