@@ -2,6 +2,10 @@ parameters:
     level: 8
     paths:
         - src/Validation/
+        - src/Command/
+        - src/Criterion/
+        - src/Codelist/CriterionCodeMethods.php
+        - src/Codelist/CriterionCode.php
     scanFiles:
         - stubs/saxon.php
     reportUnmatchedIgnoredErrors: false

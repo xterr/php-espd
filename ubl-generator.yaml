@@ -27,6 +27,13 @@ include_generated_tag: true
 codelists:
   dir: 'resources/codelists/gc'
   namespace: 'Codelist'
+  merge_sources:
+    'http://publications.europa.eu/resource/authority/criterion':
+      - list_id: 'CriteriaTypeCode'
+        case_prefix: 'V2_'
+  traits:
+    'CriterionCode':
+      - 'Xterr\Espd\Codelist\CriterionCodeMethods'
   name_overrides:
     'http://publications.europa.eu/resource/authority/country': 'CountryCode'
     'http://publications.europa.eu/resource/authority/language': 'LanguageCode'
